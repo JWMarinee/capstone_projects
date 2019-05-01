@@ -15,6 +15,7 @@ import torch.nn as nn
 import torch.optim as optim
 import torch.utils.data
 import torchvision.transforms as transforms
+import torchvision
 from torchvision.utils import save_image
 from torch.autograd import Variable
 import utils
@@ -85,46 +86,46 @@ class DL(torch.utils.data.Dataset):
         total_file_paths = []
 
         # Including each folders
-        cur_file_paths = glob.glob(os.path.join(self.base_path, 'BearHead', '*'))
-        total_file_paths = total_file_paths + cur_file_paths
+        #cur_file_paths = glob.glob(os.path.join(self.base_path, 'BearHead', '*'))
+        #total_file_paths = total_file_paths + cur_file_paths
         cur_file_paths = glob.glob(os.path.join(self.base_path, 'CatHead', '*'))
         total_file_paths = total_file_paths + cur_file_paths
-        cur_file_paths = glob.glob(os.path.join(self.base_path, 'ChickenHead', '*'))
-        total_file_paths = total_file_paths + cur_file_paths
+        #cur_file_paths = glob.glob(os.path.join(self.base_path, 'ChickenHead', '*'))
+        #total_file_paths = total_file_paths + cur_file_paths
         cur_file_paths = glob.glob(os.path.join(self.base_path, 'CowHead', '*'))
         total_file_paths = total_file_paths + cur_file_paths
-        cur_file_paths = glob.glob(os.path.join(self.base_path, 'DeerHead', '*'))
-        total_file_paths = total_file_paths + cur_file_paths
+        #cur_file_paths = glob.glob(os.path.join(self.base_path, 'DeerHead', '*'))
+        #total_file_paths = total_file_paths + cur_file_paths
         cur_file_paths = glob.glob(os.path.join(self.base_path, 'DogHead', '*'))
         total_file_paths = total_file_paths + cur_file_paths
-        cur_file_paths = glob.glob(os.path.join(self.base_path, 'DuckHead', '*'))
-        total_file_paths = total_file_paths + cur_file_paths
-        cur_file_paths = glob.glob(os.path.join(self.base_path, 'EagleHead', '*'))
-        total_file_paths = total_file_paths + cur_file_paths
-        cur_file_paths = glob.glob(os.path.join(self.base_path, 'ElephantHead', '*'))
-        total_file_paths = total_file_paths + cur_file_paths
+        #cur_file_paths = glob.glob(os.path.join(self.base_path, 'DuckHead', '*'))
+        #total_file_paths = total_file_paths + cur_file_paths
+        #cur_file_paths = glob.glob(os.path.join(self.base_path, 'EagleHead', '*'))
+        #total_file_paths = total_file_paths + cur_file_paths
+        #cur_file_paths = glob.glob(os.path.join(self.base_path, 'ElephantHead', '*'))
+        #total_file_paths = total_file_paths + cur_file_paths
         #cur_file_paths = glob.glob(os.path.join(self.base_path, 'HumanHead', '*'))
         #total_file_paths = total_file_paths + cur_file_paths
-        cur_file_paths = glob.glob(os.path.join(self.base_path, 'LionHead', '*'))
-        total_file_paths = total_file_paths + cur_file_paths
-        cur_file_paths = glob.glob(os.path.join(self.base_path, 'MonkeyHead', '*'))
-        total_file_paths = total_file_paths + cur_file_paths
-        cur_file_paths = glob.glob(os.path.join(self.base_path, 'MouseHead', '*'))
-        total_file_paths = total_file_paths + cur_file_paths
-        cur_file_paths = glob.glob(os.path.join(self.base_path, 'PandaHead', '*'))
-        total_file_paths = total_file_paths + cur_file_paths
-        cur_file_paths = glob.glob(os.path.join(self.base_path, 'PigeonHead', '*'))
-        total_file_paths = total_file_paths + cur_file_paths
+        #cur_file_paths = glob.glob(os.path.join(self.base_path, 'LionHead', '*'))
+        #total_file_paths = total_file_paths + cur_file_paths
+        #cur_file_paths = glob.glob(os.path.join(self.base_path, 'MonkeyHead', '*'))
+        #total_file_paths = total_file_paths + cur_file_paths
+        #cur_file_paths = glob.glob(os.path.join(self.base_path, 'MouseHead', '*'))
+        #total_file_paths = total_file_paths + cur_file_paths
+        #cur_file_paths = glob.glob(os.path.join(self.base_path, 'PandaHead', '*'))
+        #total_file_paths = total_file_paths + cur_file_paths
+        #cur_file_paths = glob.glob(os.path.join(self.base_path, 'PigeonHead', '*'))
+        #total_file_paths = total_file_paths + cur_file_paths
         cur_file_paths = glob.glob(os.path.join(self.base_path, 'PigHead', '*'))
         total_file_paths = total_file_paths + cur_file_paths
-        cur_file_paths = glob.glob(os.path.join(self.base_path, 'RabbitHead', '*'))
-        total_file_paths = total_file_paths + cur_file_paths
-        cur_file_paths = glob.glob(os.path.join(self.base_path, 'SheepHead', '*'))
-        total_file_paths = total_file_paths + cur_file_paths
+        #cur_file_paths = glob.glob(os.path.join(self.base_path, 'RabbitHead', '*'))
+        #total_file_paths = total_file_paths + cur_file_paths
+        #cur_file_paths = glob.glob(os.path.join(self.base_path, 'SheepHead', '*'))
+        #total_file_paths = total_file_paths + cur_file_paths
         cur_file_paths = glob.glob(os.path.join(self.base_path, 'TigerHead', '*'))
         total_file_paths = total_file_paths + cur_file_paths
-        cur_file_paths = glob.glob(os.path.join(self.base_path, 'WolfHead', '*'))
-        total_file_paths = total_file_paths + cur_file_paths
+        #cur_file_paths = glob.glob(os.path.join(self.base_path, 'WolfHead', '*'))
+        #total_file_paths = total_file_paths + cur_file_paths
 
 
         random.shuffle(total_file_paths)
@@ -133,6 +134,7 @@ class DL(torch.utils.data.Dataset):
         self.val_file_paths=sorted(total_file_paths[:num_of_valset])
         self.file_paths=sorted(total_file_paths[num_of_valset:])
 
+        print("")
         # for testset
         #self.val_file_paths = sorted(total_file_paths)
 
@@ -140,6 +142,7 @@ class DL(torch.utils.data.Dataset):
         # open path as file to avoid ResourceWarning (https://github.com/python-pillow/Pillow/issues/835)
         with open(path, 'rb') as f:
             with Image.open(f) as img:
+                img = img.convert('RGB')
                 img = ImageOps.equalize(img)
                 return img.resize((120,120))
 
@@ -171,8 +174,15 @@ def get_label(path):
 # One hot-encoding
 class_vector = ['Bear','Cat','Chicken', 'Cow', 'Deer', 'Dog', 'Duck', 'Eagle', 'Elephant', 'Lion', 'Monkey', 'Mouse', 'Panda',
                 'Pigeon', 'Pig', 'Rabbit', 'Sheep', 'Tiger', 'Wolf']
+Five_class_vector = ['Cat', 'Cow', 'Dog', 'Pig', 'Tiger']
 
 def one_hot_encoding(label):
+    for i in range(0, 5):
+        if Five_class_vector[i] == label:
+            return i
+
+
+def one_hot_encoding2(label):
     one_hot_vector =[]
     for i in range(0,19):
         if class_vector[i] == label:
@@ -218,7 +228,7 @@ class CNN(nn.Module):
             nn.Conv2d(z_size, z_size, 2, 1, 0, bias=False),
         )
         self.CNN_layer2 = nn.Sequential(
-            nn.Linear(9,250),
+            nn.Linear(16,250),
             nn.ReLU(),
             nn.Linear(250,50),
             nn.ReLU(),
@@ -226,7 +236,7 @@ class CNN(nn.Module):
         )
     def forward(self, x):
         z = self.CNN_layer1(x)
-        z = z.view(-1, 9)
+        z = z.view(-1, 16)
         output = self.CNN_layer2(z)
         return output
 
@@ -336,6 +346,7 @@ input_label = Variable(label)
 # Visualize setting
 win_dict = visualize_tools.win_dict()
 line_win_dict = visualize_tools.win_dict()
+line_win_dict_val = visualize_tools.win_dict()
 #======================================================================================================================#
 
 
@@ -347,6 +358,7 @@ line_win_dict = visualize_tools.win_dict()
 # Data Call and load
 #======================================================================================================================#
 transform = transforms.Compose([
+    transforms.Resize((150,150)),
     transforms.ToTensor(),
     transforms.Normalize(mean=(0.5, 0.5, 0.5),
                          std=(0.5, 0.5, 0.5))
@@ -357,6 +369,9 @@ unorm = visualize_tools.UnNormalize(mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5))
 dataloader = torch.utils.data.DataLoader(
     DL(options.dataroot, transform, 'train'), batch_size=options.batchSize, shuffle=True, num_workers=0
     )
+dataloader_val = torch.utils.data.DataLoader(
+    DL(options.dataroot, transform, 'test'), batch_size=5, shuffle=True, num_workers=0
+)
 #======================================================================================================================#
 
 
@@ -387,7 +402,7 @@ for epoch in range(options.iteration):
         input_label.data.resize_(label_cpu.size()).copy_(label_cpu)
 
 
-        # Excute convolutional neural-network
+        # Execute convolutional neural-network
         result_z = cnn_module(input_image)
         err_mse = criterion_NN(result_z, input_label.long())
 
@@ -403,14 +418,34 @@ for epoch in range(options.iteration):
 
 
         # Visualize train images
+
         test_Image = torch.cat((unorm(original_image.data[0]), unorm(input_image.data[0])), 1)
         win_dict = visualize_tools.draw_images_to_windict(win_dict, [test_Image], ["Autoencoder"])
         line_win_dict = visualize_tools.draw_lines_to_windict(line_win_dict,
-                                                              [err_mse.data.mean(),0],
-                                                              ['loss_cnn_result', 'zero'],
+                                                              [err_mse.data.mean(), 0],
+                                                              ['Train_Loss', 'Zero'],
                                                               epoch, i, len(dataloader))
 
 
+    for i, (data, label) in enumerate(dataloader_val, 0):
+        var_err = 0
+        # Seperate variables
+        image_cpu = data
+        label_cpu = label
+
+        original_image = Variable(image_cpu).cuda()
+        input_image.data.resize_(image_cpu.size()).copy_(image_cpu)
+        input_label.data.resize_(label_cpu.size()).copy_(label_cpu)
+
+        # Execute convolutional neural-network
+        result_z = cnn_module(input_image)
+        err_mse = criterion_NN(result_z, input_label.long())
+        var_err += float(err_mse.data.mean())
+
+        line_win_dict_val = visualize_tools.draw_lines_to_windict(line_win_dict_val,
+                                                               [train_err, var_err*10, 0],
+                                                               ['Train_Loss', 'Validation_Loss', 'zero'],
+                                                            epoch,i, options.iteration)
 
 
 
